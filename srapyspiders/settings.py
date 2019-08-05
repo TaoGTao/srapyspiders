@@ -1,6 +1,6 @@
-BOT_NAME = 'srapyspiders'
-SPIDER_MODULES = ['srapyspiders.spiders']
-NEWSPIDER_MODULE = 'srapyspiders.spiders'
+BOT_NAME = 'gztspider'
+SPIDER_MODULES = ['srapyspiders']
+NEWSPIDER_MODULE = 'srapyspiders.spiders'  # 使用scrapy crawl genspider xxx 创建的默认爬虫目录
 
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) " \
              "Chrome/74.0.3729.169 Safari/537.36"
