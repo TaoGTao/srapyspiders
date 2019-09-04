@@ -1,10 +1,10 @@
 import os
 
-from srapyspiders.basespiders.xgspider import XgSpider
+from scrapyspiders.basespiders.xgspider import XgSpider
 
 
 class MySpider(XgSpider):
-    name = 'baidu'
+    name = '行政处罚-陕西'
     url = 'http://www.sxcredit.gov.cn/queryPage/xzcf.jspx'
 
     def parse(self, response):
@@ -15,4 +15,4 @@ class MySpider(XgSpider):
 
 
 if __name__ == '__main__':
-    os.system('scrapy crawl baidu')
+    MySpider.run_download(fast=__file__)

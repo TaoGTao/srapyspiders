@@ -1,9 +1,14 @@
 BOT_NAME = 'gztspider'
-SPIDER_MODULES = ['srapyspiders']
-NEWSPIDER_MODULE = 'srapyspiders.spiders'  # 使用scrapy crawl genspider xxx 创建的默认爬虫目录
+SPIDER_MODULES = ['scrapyspiders']
+# NEWSPIDER_MODULE = 'scrapyspiders.spiders'  # 使用scrapy crawl genspider xxx 创建的默认爬虫目录
 
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) " \
              "Chrome/74.0.3729.169 Safari/537.36"
+
+DEFAULT_REQUEST_HEADERS = {
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+    'Accept-Language': 'en',
+}
 
 # Obey robots.txt rules
 # ROBOTSTXT_OBEY = True
@@ -32,13 +37,6 @@ USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTM
 
 # Disable Telnet Console (enabled by default)
 # TELNETCONSOLE_ENABLED = False
-
-# Override the default request headers:
-# http默认请求头
-DEFAULT_REQUEST_HEADERS = {
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-    'Accept-Language': 'en',
-}
 
 # Enable or disable spider middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html

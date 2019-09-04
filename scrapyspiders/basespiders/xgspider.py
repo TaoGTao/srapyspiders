@@ -1,6 +1,8 @@
+import subprocess
+
 from scrapy import Spider, Request
 from scrapy.shell import inspect_response
-
+from scrapyspiders.tools.path import get_spider_path
 
 class XgSpider(Spider):
     name = 'xgspider'
@@ -21,3 +23,11 @@ class XgSpider(Spider):
         :return:
         """
         inspect_response(response, self)
+
+    @classmethod
+    def run_download(cls, suffix='', fast=''):
+        if fast:
+            suffix += ' -s SPIDER_MODULES=' + get_spider_path(fast)
+        subprocess.call('scrapy crawl {0}'.format(cls.name) + suffix)
+
+
