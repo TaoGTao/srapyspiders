@@ -9,11 +9,16 @@ import scrapy
 
 
 class BaseItem(scrapy.Item):
-    发布网站 = scrapy.Field()
-    发布时间 = scrapy.Field()
-    下载时间 = scrapy.Field()
-    URL = scrapy.Field
+    name = scrapy.Field()
+    url = scrapy.Field()
+    pubdate = scrapy.Field()
+    title = scrapy.Field()
+    text = scrapy.Field()
     more = scrapy.Field()
 
-class JobItem(BaseItem):
+class creditItem(BaseItem):
+    # 发布网站 = scrapy.Field()
+    # 发布时间 = scrapy.Field()
+    # 下载时间 = scrapy.Field()
+    # name = scrapy.Field()
     pass

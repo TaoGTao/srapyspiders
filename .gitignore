@@ -2,3 +2,4 @@
 *.log
 .idea*
 *.xml
+databaseconfig.py

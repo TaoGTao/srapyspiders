@@ -9,7 +9,11 @@ DEFAULT_REQUEST_HEADERS = {
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
     'Accept-Language': 'en',
 }
+#
+# REDIS_URL = 'redis://@localhost:6379'
 
+REDIS_HOST = '192.168.0.231'
+REDIS_PORT = 6379
 # Obey robots.txt rules
 # ROBOTSTXT_OBEY = True
 

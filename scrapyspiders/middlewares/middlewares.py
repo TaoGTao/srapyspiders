@@ -6,8 +6,7 @@
 # http://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
 from scrapy import signals
-
-
+from scrapyspiders.tools import get_user_agent
 class SrapyspidersSpiderMiddleware(object):
     # Not all methods need to be defined. If a method is not defined,
     # scrapy acts as if the spider middleware does not modify the
@@ -54,3 +53,11 @@ class SrapyspidersSpiderMiddleware(object):
 
     def spider_opened(self, spider):
         spider.logger.info('Spider opened: %s' % spider.name)
+
+class RandomUserAgentMiddleware:
+    def __init__(self):
+        self.user_agent = get_user_agent()
+
+    def process_request(self, request, spider):
+        request.headers.setdefault('User-Agent', self.user_agent)
+
