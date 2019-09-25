@@ -1,0 +1,8 @@
+scrapy
+requests
+redis
+pymongo
+mysqlclient
+scrapy-redis
+scrapyd
+

@@ -7,10 +7,10 @@
 
 import json
 
-from scrapyspiders.tools import get_mysql_client
+from scrapyspiders.tools import *
 
 
-class XgSpiderPipeline(object):
+class MysqlPipeline(object):
 
     def __init__(self):
         self.db = get_mysql_client()
@@ -32,3 +32,11 @@ class XgSpiderPipeline(object):
             self.db.commit()
 
         return item
+
+
+class MonGoPipeline:
+    def process_item(self, item, spider):
+        outputs = item.pop('more')
+        all_item = dict(item, **outputs)
+        spider.coll.insert(all_item)
+        return all_item

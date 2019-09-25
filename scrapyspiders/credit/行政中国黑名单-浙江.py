@@ -15,7 +15,6 @@ class MySpider(XgSpider):
         response = response.replace(encoding='gbk')
         lines = re.findall('black\$(.+?)\$(.+?)\$\d{4}-\d{2}-\d{2}\$(\w+?)"', response.text)
         for line in lines:  # (deptnames, titleAll, tabId)
-            print(self.url3.format(*line))
             yield Request(self.url3.format(*line), self.parse1, meta={'line': line})
 
     def parse1(self, response):  # 获取部分板块需要列表页表头信息
@@ -37,7 +36,3 @@ class MySpider(XgSpider):
             new += 1
         if new:
             yield response.request.replace(url=get_next_page(response.url, "record=%d", mod=10))
-#
-#
-# if __name__ == '__main__':
-#     MySpider.run_download(fast=__file__)

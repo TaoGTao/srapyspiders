@@ -10,7 +10,7 @@ from scrapyspiders.tools.path import get_spider_path
 
 class XgSpider(Spider):
     name = 'xgspider'
-    custom_settings = {'ITEM_PIPELINES': {'scrapyspiders.pipelines.pipelines.XgSpiderPipeline': 7,
+    custom_settings = {'ITEM_PIPELINES': {'scrapyspiders.pipelines.pipelines.MonGoPipeline': 7,
                                           # 'scrapy_redis.pipelines.RedisPipeline': 700
                                           },
     #                    'DUPEFILTER_CLASS': "scrapy_redis.dupefilter.RFPDupeFilter",
@@ -20,15 +20,17 @@ class XgSpider(Spider):
 
     # redis_key = 'xgspider:start_urls'
 
-    # def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         # Dynamically define the allowed domains list.
         # domain = kwargs.pop('domain', '')
         # self.allowed_domains = filter(None, domain.split(','))
-        # super().__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
+        self.client = get_mongo_client()
+        self.coll = self.get_coll()
 
     def start_requests(self):
         if hasattr(self, 'get_start_request'):
-            yield self.get_start_request
+            yield from self.get_start_request()
             return
         if not hasattr(self, 'url'):
             raise ValueError('url不能为空')
@@ -60,7 +62,9 @@ class XgSpider(Spider):
 
         return item
 
-    # @staticmethod
-    # def close(spider, reason):
-    #     spider.mq.close()
+    def get_coll(self):
+        return self.client[self.dbName][self.collName]
+
+    def close(self, reason):
+        self.client.close()
 
