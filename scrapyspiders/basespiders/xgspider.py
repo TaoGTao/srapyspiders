@@ -29,6 +29,7 @@ class XgSpider(Spider):
         self.coll = self.get_coll()
 
     def start_requests(self):
+        print('%s 爬虫启动' % self.name)
         if hasattr(self, 'get_start_request'):
             yield from self.get_start_request()
             return

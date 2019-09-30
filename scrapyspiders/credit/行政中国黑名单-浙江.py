@@ -32,6 +32,8 @@ class MySpider(XgSpider):
             info = dict(zip(response.meta['tab_titles'], infos[1:]))
             url = self.url2.format(infos[0], *response.meta['line'])
             show_url = url.replace('dishonestyDetailxx', 'dishonestyDetail')
+            if self.coll.count({"url": show_url}):
+                continue
             yield self.down_detail(url=show_url, **info)
             new += 1
         if new:
